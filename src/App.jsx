@@ -5,11 +5,12 @@ import './App.css'
 function App() {
 
   return (
-      <div>
-        <h1>User Profile</h1>
+      <main>
+        <header >
+          <h1 >User Profile</h1 >
+        </header >
         <UserForm />
-      </div>
-
+      </main >
   )
 }
 
