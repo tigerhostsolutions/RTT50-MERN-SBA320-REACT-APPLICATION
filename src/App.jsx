@@ -4,25 +4,24 @@ import GoogleBooksSearch from './components/GoogleBooks/GoogleBooksSearch.jsx';
 import './App.css';
 
 const App = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false); // Track form
-                                                         // submission
-  const [userData, setUserData] = useState(null);        // Store user data
+  // Track form submission
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [userData, setUserData] = useState(null);  // Store user data
 
   const handleFormSubmission = (formData) => {
-    // Store user data from the form (e.g., name, age, gender)
-    setUserData(formData);
+    setUserData(formData); // Store user data from the form
     setIsSubmitted(true); // Transition to Google Books Search view
   };
 
-  return (
-      <div >
-        {!isSubmitted ? (
-            <UserForm onSubmit = {handleFormSubmission} />
-        ) : (
-             <GoogleBooksSearch user = {userData} />
-         )}
-      </div >
-  );
+  return (<main >
+    <h1 >Welcome!</h1 >
+    <h2 >To search for your book, enter your name.</h2 >
+    <div >
+      {!isSubmitted ?
+       (<UserForm onSubmit = {handleFormSubmission} />) :
+       (<GoogleBooksSearch user = {userData} />)}
+    </div >
+  </main >);
 };
 
 export default App;

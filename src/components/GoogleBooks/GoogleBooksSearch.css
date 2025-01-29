@@ -1,51 +1,136 @@
-.google-books-search {
-    font-family: Arial, sans-serif;
+/* General styling for the container */
+.google-books {
+    margin: 0 auto;
     padding: 20px;
+    max-width: 800px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    color: #333;
 }
 
-.search-bar {
+.greeting {
     margin-bottom: 20px;
+    padding: 10px;
+    background: #f3f3f3;
+    border-radius: 8px;
+    font-size: 1.2rem;
 }
 
-.search-bar input {
-    padding: 10px;
+.greeting h1 {
+    margin-bottom: 10px;
+    color: #4caf50;
+}
+
+/* Styles for search input and button */
+.search-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.search-input {
+    width: 70%;
+    padding: 12px;
     font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.search-input:focus {
+    border-color: #4caf50;
+}
+
+.search-button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    background-color: #4caf50;
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
     width: 300px;
 }
 
-.search-bar button {
-    padding: 10px;
-    font-size: 1rem;
-    margin-left: 10px;
-    cursor: pointer;
+.search-button:disabled {
+    background-color: #9e9e9e;
+    cursor: not-allowed;
 }
 
-.results {
-    margin-top: 20px;
+.search-button:hover {
+    background-color: #45a049;
 }
 
-.book {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 15px;
+/* Results container */
+.results-container {
+    margin-top: 30px;
+}
+
+.no-results {
+    color: #888;
+    font-style: italic;
+}
+
+/* Error message */
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+/* Book card styling */
+.book-card {
     display: flex;
     align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.thumbnail {
-    max-width: 120px;
-    margin-right: 15px;
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.error {
-    color: red;
+.book-thumbnail {
+    max-width: 100px;
+    margin-right: 20px;
+    border-radius: 4px;
 }
 
-.book-details h2 {
-    margin: 0;
+.book-details {
+    text-align: left;
 }
 
-.book-details p {
-    margin: 5px 0;
+.book-title {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.book-description {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Loading spinner */
+.spinner {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #4caf50;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }

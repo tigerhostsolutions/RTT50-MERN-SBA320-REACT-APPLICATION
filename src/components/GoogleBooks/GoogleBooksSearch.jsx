@@ -11,7 +11,7 @@ const GoogleBooksSearch = ({ user }) => {
   // Function to fetch books from Google Books API
   const fetchBooks = async () => {
     if (!query.trim()) {
-      alert("Please enter a book title");
+      alert("Please enter a valid book title");
       return;
     }
 
@@ -24,7 +24,7 @@ const GoogleBooksSearch = ({ user }) => {
 
     try {
       const response = await axios.get(apiUrl);
-      const items = response.data.items || []; // Results array
+      const items = response.data.items || []; // Get results array
       setBooks(items);
     } catch (err) {
       setError("Failed to fetch books. Please try again.");
@@ -35,8 +35,8 @@ const GoogleBooksSearch = ({ user }) => {
 
   // Render each book item
   const renderBooks = () => {
-    if (books.length === 0) {
-      return <p>No books found.</p>;
+    if (books.length === 0 && !loading) {
+      return <p className="no-results">No books found. Try searching for something else!</p>;
     }
 
     return books.map((book) => {
@@ -44,22 +44,20 @@ const GoogleBooksSearch = ({ user }) => {
       const { title, authors, description, imageLinks } = volumeInfo;
 
       return (
-          <div key={id} className="book">
-            <div className="book-info">
-              {imageLinks?.thumbnail && (
-                  <img
-                      src={imageLinks.thumbnail}
-                      alt={title}
-                      className="thumbnail"
-                  />
-              )}
-              <div className="book-details">
-                <h2>{title || "No Title Available"}</h2>
-                <p>
-                  <strong>Authors:</strong> {authors ? authors.join(", ") : "N/A"}
-                </p>
-                <p>{description || "No description available."}</p>
-              </div>
+          <div key={id} className="book-card">
+            {imageLinks?.thumbnail && (
+                <img
+                    src={imageLinks.thumbnail}
+                    alt={title}
+                    className="book-thumbnail"
+                />
+            )}
+            <div className="book-details">
+              <h2 className="book-title">{title || "No Title Available"}</h2>
+              <p><strong>Authors:</strong> {authors ? authors.join(", ") : "N/A"}</p>
+              <p className="book-description">
+                {description || "No description available."}
+              </p>
             </div>
           </div>
       );
@@ -67,31 +65,29 @@ const GoogleBooksSearch = ({ user }) => {
   };
 
   return (
-      <div className="google-books-search">
-        <h1>Welcome, {user?.name}!</h1>
-        <p>
-          You can now search for books. Your demographic information:
-          <ul>
-            <li><strong>Age: </strong>{user?.age}</li>
-            <li><strong>Gender: </strong>{user?.gender}</li>
-          </ul>
-        </p>
-        <div className="search-bar">
+      <div className="google-books">
+        <div className="greeting">
+          <h1>Welcome, {user?.name}!</h1>
+          <p>Start exploring amazing books created by authors worldwide!</p>
+        </div>
+
+        <div className="search-container">
           <input
               type="text"
-              placeholder="Enter book title..."
+              className="search-input"
+              placeholder="Search for books..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
           />
-          <button onClick={fetchBooks} disabled={loading}>
+          <button className="search-button" onClick={fetchBooks} disabled={loading}>
             {loading ? "Searching..." : "Search"}
           </button>
         </div>
 
-        {/* Show loading spinner, error, or book results */}
-        <div className="results">
-          {loading && <p>Loading...</p>}
-          {error && <p className="error">{error}</p>}
+        {/* Render loading spinner, error messages, or books */}
+        <div className="results-container">
+          {loading && <div className="spinner"></div>} {/* Loading spinner */}
+          {error && <p className="error-message">{error}</p>}
           {!loading && !error && renderBooks()}
         </div>
       </div>
