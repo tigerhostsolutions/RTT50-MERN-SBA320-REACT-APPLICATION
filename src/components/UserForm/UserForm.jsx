@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './UserForm.css';
 
-const UserForm = () => {
+const UserForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     name: "",
     age: "",
@@ -16,9 +16,10 @@ const UserForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true); // Switch to profile view
+    onSubmit(formData); // Pass data to parent via prop
+    setIsSubmitted(true); // Switch to profile view}
   };
 
   const handleEdit = () => {
@@ -88,4 +89,5 @@ const UserForm = () => {
       </form>
   );
 };
+
 export default UserForm;

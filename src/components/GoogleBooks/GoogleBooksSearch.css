@@ -1,0 +1,51 @@
+.google-books-search {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    padding: 10px;
+    font-size: 1rem;
+    width: 300px;
+}
+
+.search-bar button {
+    padding: 10px;
+    font-size: 1rem;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.results {
+    margin-top: 20px;
+}
+
+.book {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.thumbnail {
+    max-width: 120px;
+    margin-right: 15px;
+}
+
+.error {
+    color: red;
+}
+
+.book-details h2 {
+    margin: 0;
+}
+
+.book-details p {
+    margin: 5px 0;
+}
