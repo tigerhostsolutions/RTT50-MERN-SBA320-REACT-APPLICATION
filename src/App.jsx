@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import UserForm from './components/UserForm/UserForm.jsx';
-import GoogleBooksSearch from "./components/GoogleBooks/GoogleBooksSearch.jsx";
-import './App.css'
+import GoogleBooksSearch from './components/GoogleBooks/GoogleBooksSearch.jsx';
+import './App.css';
 
-function App() {
-  const [searchQuery, setSearchQuery] = useState("");
+const App = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false); // Track form
+                                                         // submission
+  const [userData, setUserData] = useState(null);        // Store user data
 
   const handleFormSubmission = (formData) => {
-    // Use formData (for example, name or gender) if needed for the query.
-    setSearchQuery(formData.name); // Trigger a new search in GoogleBooksSearch
+    // Store user data from the form (e.g., name, age, gender)
+    setUserData(formData);
+    setIsSubmitted(true); // Transition to Google Books Search view
   };
 
   return (
-      <main>
-        <header >
-          <h1 >User Profile</h1 >
-        </header >
-        <UserForm onSubmit={handleFormSubmission} /> {/* Pass handler via props */}
-        <GoogleBooksSearch query={searchQuery} />{/* Forward the query to GoogleBooksSearch */}
-      </main >
-  )
-}
+      <div >
+        {!isSubmitted ? (
+            <UserForm onSubmit = {handleFormSubmission} />
+        ) : (
+             <GoogleBooksSearch user = {userData} />
+         )}
+      </div >
+  );
+};
 
-export default App
+export default App;

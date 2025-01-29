@@ -22,24 +22,24 @@ const UserForm = ({ onSubmit }) => {
     setIsSubmitted(true); // Switch to profile view}
   };
 
-  const handleEdit = () => {
-    setIsSubmitted(false); // Switch back to form view
-  };
-
-  if (isSubmitted) {
-    // Profile View
-    return (
-        <div className='profile-card'>
-          <h2>Hello {formData.name}</h2>
-          <div className='profile-card-demographics'>
-            <p><strong>Name:</strong> {formData.name}</p>
-            <p><strong>Age:</strong> {formData.age}</p>
-            <p><strong>Gender:</strong> {formData.gender}</p>
-            <button onClick={handleEdit}>Edit Profile</button>
-          </div>
-        </div>
-    );
-  }
+  // const handleEdit = () => {
+  //   setIsSubmitted(false); // Switch back to form view
+  // };
+  //
+  // if (isSubmitted) {
+  //   // Profile View
+  //   return (
+  //       <div className='profile-card'>
+  //         <h2>Hello {formData.name}</h2>
+  //         <div className='profile-card-demographics'>
+  //           <p><strong>Name:</strong> {formData.name}</p>
+  //           <p><strong>Age:</strong> {formData.age}</p>
+  //           <p><strong>Gender:</strong> {formData.gender}</p>
+  //           <button onClick={handleEdit}>Edit Profile</button>
+  //         </div>
+  //       </div>
+  //   );
+  // }
 
   //Form View
   return (
